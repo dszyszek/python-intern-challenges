@@ -25,8 +25,6 @@ def find(url, log_file):
 
                 if req:
                     print(f'Found sub-domain! www.{single_line}.{url}')
-        except:
-            print('ERROR! Cannot do that')
+        except requests.exceptions.ConnectionError:
+            pass
 
-    # a = requests.get(url)
-    # print(a.text)
