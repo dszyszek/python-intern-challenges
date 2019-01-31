@@ -4,9 +4,12 @@ def add_dictionary():
     name = input('Enter name of new dict\n')
     path = input('Enter path to the file\n')
 
-    with open(f'./dict/{name}.log', 'w+') as new_file, open(path) as old_file:
-        r = old_file.read()
-        new_file.write(r)
+    try:
+        with open(f'./dict/{name}.log', 'w+') as new_file, open(path) as old_file:
+            r = old_file.read()
+            new_file.write(r)
+    except:
+        print('Cannot resolve')
 
 
 

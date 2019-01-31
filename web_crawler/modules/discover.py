@@ -16,15 +16,21 @@ def discover():
 
 
 def find(url, log_file):
+    found = []
 
     with open(f'./dict/{log_file}.log', 'r') as file:
-        try:
-            for line in file:
+
+        for line in file:
+            try:
                 single_line = line.strip()
                 req = requests.get(f'http://{single_line}.{url}')
 
                 if req:
-                    print(f'Found sub-domain! www.{single_line}.{url}')
-        except requests.exceptions.ConnectionError:
-            pass
+                    found.append(req)
+                    print(f'Found sub-domain! {single_line}.{url}')
+
+            except requests.exceptions.ConnectionError:
+                pass
+        if len(found) == 0:
+            print('No results')
 
