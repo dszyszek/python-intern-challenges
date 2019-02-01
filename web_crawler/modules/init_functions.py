@@ -16,7 +16,6 @@ def add_dictionary():
 def search():
 
     print('Which searching mode you wanna use?\n')
-    print('Use one of the following:\n')
     print('1 - Crawl\n')
     searching_mode = input('2 - Discover hidden sub-domains\n')
 

@@ -20,13 +20,14 @@ def find(url, log_file):
     with open(f'./dict/{log_file}.log', 'r') as file:
 
         for line in file:
-            try:
-                single_line = line.strip()
-                req = requests.get(f'http://{single_line}.{url}')
+            single_line = line.strip()
+            print(f'Testing: {single_line}.{url}')
 
+            try:
+                req = requests.get(f'http://{single_line}.{url}')
                 if req:
                     found.append(f'{single_line}.{url}')
-                    print(f'Found sub-domain! {single_line}.{url}')
+                    # print(f'Found sub-domain! {single_line}.{url}')
 
             except requests.exceptions.ConnectionError:
                 pass
