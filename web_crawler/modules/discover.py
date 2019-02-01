@@ -1,6 +1,7 @@
+import datetime
 import requests
 
-
+from .make_report import make_report
 
 def discover():
     print('\n=================================================================')
@@ -11,8 +12,6 @@ def discover():
     dic = input('\nEnter name of your searching-dictionary (if you don\'t have one, just type pre)\n')
 
     find(page, dic)
-
-
 
 
 def find(url, log_file):
@@ -26,11 +25,19 @@ def find(url, log_file):
                 req = requests.get(f'http://{single_line}.{url}')
 
                 if req:
-                    found.append(req)
+                    found.append(f'{single_line}.{url}')
                     print(f'Found sub-domain! {single_line}.{url}')
 
             except requests.exceptions.ConnectionError:
                 pass
+
         if len(found) == 0:
             print('No results')
+        else:
+            report_decision = input('Do you want to make report? (y/n)\n')
+
+            if report_decision == 'y':
+                make_report(url, found, 'subdomains')
+
+
 
