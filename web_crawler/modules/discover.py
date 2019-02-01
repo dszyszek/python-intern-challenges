@@ -38,6 +38,10 @@ def find(url, log_file):
 
             if report_decision == 'y':
                 make_report(url, found, 'subdomains')
+            elif report_decision == 'n':
+                pass
+            else:
+                print('Unknown command')
 
 
 
