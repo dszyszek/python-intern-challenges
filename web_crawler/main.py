@@ -4,19 +4,19 @@ from termcolor import colored
 from modules.init_functions import *
 
 
-
-
-
 header = colored(figlet_format('WEB CRAWLER'), color='magenta')
 print(header)
 print('\n=================================================================\n')
 
-print('What do you want to do?\n')
-print('1 - Add new dictionary to use, when searching for subdomains (but please remember to stick to the format -> more info in docs)')
-init = input('2 - Crawl/Search for subdomains\n')
 
-if init == '1':
-    add_dictionary()
-elif init == '2':
-    search()
+def main():
+    print('What do you want to do?\n')
+    print('1 - Add new dictionary to use, when searching for subdomains (but please remember to stick to the format -> more info in docs)')
+    init = input('2 - Crawl/Search for subdomains\n')
 
+    if init == '1':
+        add_dictionary()
+    elif init == '2':
+        search()
+
+main()

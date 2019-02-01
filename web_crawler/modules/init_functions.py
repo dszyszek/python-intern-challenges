@@ -1,5 +1,6 @@
 from .discover import discover
 
+
 def add_dictionary():
     name = input('Enter name of new dict\n')
     path = input('Enter path to the file\n')
@@ -10,7 +11,6 @@ def add_dictionary():
             new_file.write(r)
     except:
         print('Cannot resolve')
-
 
 
 def search():
