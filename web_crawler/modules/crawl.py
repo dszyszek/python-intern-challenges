@@ -1,6 +1,8 @@
 import re
 from urllib.parse import urljoin
 import requests
+from bs4 import BeautifulSoup
+from pprint import pprint
 
 from .make_report import make_report
 
@@ -25,7 +27,7 @@ def crawl():
     url_first = page
 
     site_map(page)
-    print(result_dict)
+    pprint(result_dict)
 
     make_report(url_first, result_dict, 'maps_of_sites', 'crawl')
 
@@ -35,12 +37,13 @@ def site_map(url):
     res = requests.get(url)
     links_current = []
 
-    print(url)
+    soup = BeautifulSoup(res.text, 'html.parser')
 
-    links = re.findall('(?:href=")(.*?)"', res.text)
+    title = soup.find('title').get_text()
+    links = soup.find_all('a')
 
     for link in links:
-        link = urljoin(url, link)
+        link = urljoin(url, link['href'])
 
         if url_first in link and not link in links_global:
             links_global.append(link)
@@ -48,7 +51,7 @@ def site_map(url):
 
     if url not in result_dict:
         result_dict[url] =  {
-            'title': 'Some_title',
+            'title': title,
             'links': links_current
         }
 
