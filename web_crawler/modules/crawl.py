@@ -38,11 +38,19 @@ def site_map(url):
 
     soup = BeautifulSoup(res.text, 'html.parser')
 
-    title = soup.find('title').get_text()
-    links = soup.find_all('a')
+    title = soup.find('title')
+
+    if title:
+        title = title.get_text()
+    else:
+        title = 'No title'
+
+    links = soup.find_all('a', href=True)
+    print(links)
 
     for link in links:
         link = urljoin(url, link['href'])
+        print(link)
 
         if url_first in link and not link in links_global:
             links_global.append(link)
