@@ -2,36 +2,50 @@ import re
 from urllib.parse import urljoin
 import requests
 
-target = []
+links_global = []
+result_dict = {}
+url_first = ''
 
 
 def crawl():
+    global url_first
+
     print('\n=================================================================')
     print('Crawl mode')
     print('=================================================================\n')
 
     page = input('Enter name of the page:\n')
 
-    if not 'http://' or not 'https://' in page:
+    if not ('http://' or 'https://') in page:
         page = f'http://{page}'
 
+    url_first = page
+
     site_map(page)
-
-
-def get_links(url):
-    res = requests.get(url)
-    return re.findall('(?:href=")(.*?)"', res.text)
+    print(result_dict)
 
 
 def site_map(url):
-    links = get_links(url)
+    global url_first
+    res = requests.get(url)
+    links_current = []
 
-    # print(links)
+    links = re.findall('(?:href=")(.*?)"', res.text)
 
     for link in links:
         link = urljoin(url, link)
 
-        if url in link and link not in target:
-            target.append(link)
-            print(link)
-            site_map(link)
+        if url_first in link and not link in links_global:
+            links_global.append(link)
+            links_current.append(link)
+
+    if not url in result_dict:
+        result_dict[url] =  {
+            'title': 'Some_title',
+            'links': links_current
+        }
+
+    for x in links_current:
+        site_map(x)
+
+
