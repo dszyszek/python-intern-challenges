@@ -1,6 +1,12 @@
 # WEB CRAWLER
 Ever wanted to gather some info about site you are browserling?
 Then this is right place.
+
+# Start
+To start program:
+1. Install required packages (-> requirements.txt)
+2. Write 'python3 main.py' in console (working dir in main folder)
+
 # What can it do?
 There are two basic modes: 
 1) Crawl
