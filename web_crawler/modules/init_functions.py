@@ -1,3 +1,5 @@
+import os
+
 from .discover import discover
 from .crawl import crawl
 
@@ -6,12 +8,15 @@ def add_dictionary():
     name = input('Enter name of new dict:\n')
     path = input('Enter path to the dict you wanna upload:\n')
 
-    try:
-        with open(f'./dict/{name}.log', 'w+') as new_file, open(path) as old_file:
-            r = old_file.read()
-            new_file.write(r)
-    except:
-        print('Cannot resolve')
+    if os.path.exists(path):
+        try:
+            with open(f'./dict/{name}.log', 'w+') as new_file, open(path) as old_file:
+                r = old_file.read()
+                new_file.write(r)
+        except:
+            print('Cannot resolve')
+    else:
+        print('\nCannot find that file')
 
 
 def search():
