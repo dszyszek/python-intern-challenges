@@ -1,4 +1,0 @@
-================= Report 2019-02-02 05:34 =================
-Domain: http://0.0.0.0:8000
-Map of the page:
-{'http://0.0.0.0:8000': {'title': 'Some_title', 'links': ['http://0.0.0.0:8000/example.html', 'http://0.0.0.0:8000/site.html']}, 'http://0.0.0.0:8000/example.html': {'title': 'Some_title', 'links': []}, 'http://0.0.0.0:8000/site.html': {'title': 'Some_title', 'links': ['http://0.0.0.0:8000/site/subsite.html']}, 'http://0.0.0.0:8000/site/subsite.html': {'title': 'Some_title', 'links': ['http://0.0.0.0:8000/site/other_site.html', 'http://0.0.0.0:8000']}, 'http://0.0.0.0:8000/site/other_site.html': {'title': 'Some_title', 'links': []}}
