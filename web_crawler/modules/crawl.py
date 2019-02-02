@@ -35,6 +35,8 @@ def site_map(url):
     res = requests.get(url)
     links_current = []
 
+    print(url)
+
     links = re.findall('(?:href=")(.*?)"', res.text)
 
     for link in links:

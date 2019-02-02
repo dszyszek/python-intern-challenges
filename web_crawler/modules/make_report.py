@@ -1,4 +1,5 @@
 import datetime
+from json import dumps
 
 
 def make_report(url, results, dir, mode, dic=''):
@@ -26,5 +27,7 @@ def exec(url, results, dir, mode, dic=''):
             for i,x in enumerate(results):
                 file.write(f'{i+1}) {x}\n')
         elif mode == 'crawl':
+            results = dumps(results, indent=4, sort_keys=False)
+
             file.write('\nMap of the page:\n')
-            file.write(str(results))
+            file.write(results)
