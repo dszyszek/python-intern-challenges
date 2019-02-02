@@ -9,7 +9,7 @@ def discover():
     print('=================================================================\n')
 
     page = input('Enter name of the page:\n')
-    dic = input('\nEnter name of your searching-dictionary (if you don\'t have one, just type pre)\n')
+    dic = input('\nEnter name of your searching-dictionary (if you don\'t have one, you can use one of the predefined dicts: pre-min or pre-max)\n')
 
     find(page, dic)
 
@@ -35,14 +35,8 @@ def find(url, log_file):
         if len(found) == 0:
             print('No results')
         else:
-            report_decision = input('Do you want to make report? (y/n)\n')
+            make_report(url, found, 'subdomains', 'discover')
 
-            if report_decision == 'y':
-                make_report(url, found, 'subdomains')
-            elif report_decision == 'n':
-                pass
-            else:
-                print('Unknown command')
 
 
 

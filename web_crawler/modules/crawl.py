@@ -2,6 +2,8 @@ import re
 from urllib.parse import urljoin
 import requests
 
+from .make_report import make_report
+
 links_global = []
 result_dict = {}
 url_first = ''
@@ -23,6 +25,8 @@ def crawl():
 
     site_map(page)
     print(result_dict)
+
+    make_report(url_first, result_dict, 'maps_of_sites', 'crawl')
 
 
 def site_map(url):

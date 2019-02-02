@@ -1,6 +1,7 @@
 from .discover import discover
 from .crawl import crawl
 
+
 def add_dictionary():
     name = input('Enter name of new dict:\n')
     path = input('Enter path to the dict you wanna upload:\n')
