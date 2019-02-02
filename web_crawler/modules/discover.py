@@ -35,7 +35,7 @@ def find(url, log_file):
         if len(found) == 0:
             print('No results')
         else:
-            make_report(url, found, 'subdomains', 'discover')
+            make_report(f'http://{url}', found, 'subdomains', 'discover')
 
 
 

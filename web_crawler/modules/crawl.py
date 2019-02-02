@@ -4,6 +4,7 @@ import requests
 
 from .make_report import make_report
 
+
 links_global = []
 result_dict = {}
 url_first = ''
@@ -43,7 +44,7 @@ def site_map(url):
             links_global.append(link)
             links_current.append(link)
 
-    if not url in result_dict:
+    if url not in result_dict:
         result_dict[url] =  {
             'title': 'Some_title',
             'links': links_current

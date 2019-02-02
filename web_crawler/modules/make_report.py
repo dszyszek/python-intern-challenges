@@ -18,7 +18,7 @@ def exec(url, results, dir, mode):
     with open(f'./reports/{dir}/report_{now.strftime("%Y-%m-%d")}_{now.strftime("%H;%M")}', 'w+') as file:
 
         file.write(f'================= Report {now.strftime("%Y-%m-%d %H:%M")} =================\n')
-        file.write(f'Domain: http://{url}')
+        file.write(f'Domain: {url}')
 
         if mode == 'discover':
             file.write('\nSubdomains:\n')
@@ -26,4 +26,4 @@ def exec(url, results, dir, mode):
                 file.write(f'{i+1}) {x}\n')
         elif mode == 'crawl':
             file.write('\nMap of the page:\n')
-            file.write(results)
+            file.write(str(results))
