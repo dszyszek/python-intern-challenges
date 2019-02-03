@@ -11,7 +11,7 @@ print('\n=================================================================\n')
 
 def init():
     file = input('Enter path to .csv file you wanna reorganize:\n')
-    new_file_name = input('Enter name of new .csv file')
+    new_file_name = input('Enter name of new .csv file:\n')
 
     if os.path.isfile(f'./processed_files/{new_file_name}'):     # Change name of file to prevent overwriting
         new_file_name = f'{new_file_name}-copy'
