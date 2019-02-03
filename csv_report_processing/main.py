@@ -10,12 +10,16 @@ print('\n=================================================================\n')
 
 
 def init():
+    """This function will initialise program"""
+
     file = input('Enter path to .csv file you wanna reorganize:\n')
     new_file_name = input('Enter name of new .csv file:\n')
 
-    if os.path.isfile(f'./processed_files/{new_file_name}'):     # Change name of file to prevent overwriting
+    if os.path.isfile(f'./processed_files/{new_file_name}.csv'):     # Change name of file to prevent overwriting
         new_file_name = f'{new_file_name}-copy'
-        print(f'File with such name exist! Name of your file is changed to {new_file_name}')
+        print(colored(f'File with such name exist! Name of your file is changed to {new_file_name}', color='yellow'))
+    elif not new_file_name:                                         # Set default name if nothing passed
+        new_file_name += 'new_file'
 
     process_file(file, new_file_name)
 
