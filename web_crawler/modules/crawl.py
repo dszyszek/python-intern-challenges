@@ -52,7 +52,7 @@ def site_map(url):
         link = urljoin(url, link['href'])
         print(link)
 
-        if url_first in link and not link in links_global:
+        if url_first in link and link not in links_global:
             links_global.append(link)
             links_current.append(link)
 
@@ -63,6 +63,7 @@ def site_map(url):
         }
 
     for x in links_current:
-        site_map(x)
+        if not x[-3:] == 'pdf':
+            site_map(x)
 
 
