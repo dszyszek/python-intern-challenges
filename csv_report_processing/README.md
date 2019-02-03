@@ -4,6 +4,12 @@ The main feature is to read .csv file (standard input), convert date,
 write three-letter shortcut of a country (from given city) and write it to new file, created in ./processed_files directory 
 (user inputs name of newly created file).
 
+# Start
+To start program:
+1) Install all the dependencies (-> requirements.txt)
+2) Run 'python3 main.py' in terminal (working directory in main folder)
+And don't forget about good Internet connection!
+
 # Usage
 The program is very simple. To upload file just input (absolute!) path to the .csv file which is going to be processed and hit enter. Then write name of file, which is going to be created (the one with processed data). Remember to input ONLY name (no .csv format). 
 
