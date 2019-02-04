@@ -14,7 +14,6 @@ def process_file(file, new_name):
     """This function will init processing given .csv file"""
 
     with open(file) as csv_file, open(f'{os.path.split(os.path.abspath(__file__))[0]}/../processed_files/{new_name}.csv', 'w+') as new_file:
-        print(os.getcwd())
 
         if not file[-3:] == 'csv':                      # Check if passed file is .csv
             print(colored('You have to pass .csv file!', color='red'))
