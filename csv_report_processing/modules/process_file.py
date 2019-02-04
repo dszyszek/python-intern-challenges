@@ -1,7 +1,6 @@
 from csv import reader, writer
 from datetime import datetime
 import pycountry
-import requests
 from termcolor import colored
 import os
 import sys
@@ -28,12 +27,14 @@ def process_file(file, new_name):
 
             return 0
 
+        new_file_write = writer(new_file)
+        new_file_write.writerow(['Date', 'Country_code', 'Number of impressions', 'CTR'])
+
         for row in file_read:
             date = change_date_format(row[0])           # Change data as specified in task
             code = get_country_shortcut(row[1])
             impressions = int(row[2])
 
-            new_file_write = writer(new_file)
             new_file_write.writerow([date, code, impressions, row[3]])
 
 
