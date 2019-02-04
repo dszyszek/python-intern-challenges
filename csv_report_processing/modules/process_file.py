@@ -4,6 +4,7 @@ import pycountry
 import requests
 from termcolor import colored
 import os
+import sys
 
 from .process_engine import *
 
@@ -12,15 +13,20 @@ from .process_engine import *
 def process_file(file, new_name):
     """This function will init processing given .csv file"""
 
-    with open(file) as csv_file, open(f'{os.getcwd()}/{new_name}.csv', 'w+') as new_file:
+    with open(file) as csv_file, open(f'{os.path.split(os.path.abspath(__file__))[0]}/../processed_files/{new_name}.csv', 'w+') as new_file:
+        print(os.getcwd())
 
         if not file[-3:] == 'csv':                      # Check if passed file is .csv
-            return print(colored('You have to pass .csv file!', color='red'))
+            print(colored('You have to pass .csv file!', color='red'))
+
+            return 0
 
         file_read = reader(csv_file)
 
         if not csv_file.read(1):                               # Check if passed file contain data
-            return print(colored('No data in the file!', color='red'))
+            print(colored('No data in the file!', color='red'))
+
+            return 0
 
         for row in file_read:
             date = change_date_format(row[0])           # Change data as specified in task
