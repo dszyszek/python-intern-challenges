@@ -3,14 +3,16 @@ from datetime import datetime
 import pycountry
 import requests
 from termcolor import colored
+import os
 
 from .process_engine import *
+
 
 
 def process_file(file, new_name):
     """This function will init processing given .csv file"""
 
-    with open(file) as csv_file, open(f'./processed_files/{new_name}.csv', 'w+') as new_file:
+    with open(file) as csv_file, open(f'{os.getcwd()}/{new_name}.csv', 'w+') as new_file:
 
         if not file[-3:] == 'csv':                      # Check if passed file is .csv
             return print(colored('You have to pass .csv file!', color='red'))
