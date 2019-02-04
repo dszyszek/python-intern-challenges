@@ -29,8 +29,6 @@ class ProcessFileTests(unittest.TestCase):
 
         self.assertFalse(file)
 
-        os.remove(f'{os.getcwd()}/../processed_files/test_empty.csv')
-
 
 if __name__ == "__main__":
     unittest.main()

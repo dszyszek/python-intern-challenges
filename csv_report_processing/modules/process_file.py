@@ -23,6 +23,7 @@ def process_file(file, new_name):
         file_read = reader(csv_file)
 
         if not csv_file.read(1):                               # Check if passed file contain data
+            os.remove(f'{os.getcwd()}/../processed_files/{new_name}.csv')   # Remove created empty file
             print(colored('No data in the file!', color='red'))
 
             return 0
