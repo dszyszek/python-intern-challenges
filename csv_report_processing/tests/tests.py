@@ -20,6 +20,10 @@ class ProcessFileTests(unittest.TestCase):
 
         self.assertFalse(file)
 
+    def tearDown(self):
+        """Remove test_correct.csv file after testing"""
+        os.remove(f'{os.getcwd()}/../processed_files/test_correct.csv')
+
 
 if __name__ == "__main__":
     unittest.main()
