@@ -15,10 +15,6 @@ def make_report(url, results, dir, mode, dic=''):
 def exec(url, results, dir, mode, dic=''):
     now = datetime.datetime.now()
 
-    for val in results.values():            # Change type of links to string (so it could be dumped with json)
-        val['links'] = str(val['links'])
-
-
     with open(f'./reports/{dir}/report_{now.strftime("%Y-%m-%d")}_{now.strftime("%H;%M")}', 'w+') as file:
 
         file.write(f'================= Report {now.strftime("%Y-%m-%d %H:%M")} =================\n')
@@ -30,6 +26,9 @@ def exec(url, results, dir, mode, dic=''):
             for i,x in enumerate(results):
                 file.write(f'{i+1}) {x}\n')
         elif mode == 'crawl':
+            for val in results.values():  # Change type of links to string (so it could be dumped with json)
+                val['links'] = str(val['links'])
+
             results = dumps(results, indent=4, sort_keys=False)
 
             file.write('\nMap of the page:\n')
