@@ -27,7 +27,6 @@ def find(url, log_file):
                 req = requests.get(f'http://{single_line}.{url}', timeout=2)
                 if req:
                     found.append(f'{single_line}.{url}')
-                    # print(f'Found sub-domain! {single_line}.{url}')
 
             except requests.exceptions.ConnectionError:
                 pass
