@@ -24,7 +24,7 @@ def find(url, log_file):
             print(f'Testing: {single_line}.{url}')
 
             try:
-                req = requests.get(f'http://{single_line}.{url}', timeout=2)
+                req = requests.get(f'http://{single_line}.{url}', timeout=(1, 0.5))
                 if req:
                     found.append(f'{single_line}.{url}')
 
