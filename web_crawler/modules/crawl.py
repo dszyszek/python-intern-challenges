@@ -6,7 +6,7 @@ from pprint import pprint
 from .make_report import make_report
 
 
-links_global = []
+links_global = set()
 result_dict = {}
 url_first = ''
 
@@ -26,7 +26,8 @@ def crawl():
     url_first = page
 
     site_map(page)
-    pprint(result_dict)
+    print('\nResults:\n')
+    pprint(result_dict)                                # Print results from crawling
 
     make_report(url_first, result_dict, 'maps_of_sites', 'crawl')
 
@@ -34,7 +35,8 @@ def crawl():
 def site_map(url):
     global url_first
     res = requests.get(url)
-    links_current = []
+    links_current = set()
+    links_no_follow = set()
 
     soup = BeautifulSoup(res.text, 'html.parser')
 
@@ -46,20 +48,22 @@ def site_map(url):
         title = 'No title'
 
     links = soup.find_all('a', href=True)
-    print(links)
 
     for link in links:
         link = urljoin(url, link['href'])
-        print(link)
 
         if url_first in link and link not in links_global:
-            links_global.append(link)
-            links_current.append(link)
+            print(f'Testing: {link}')
+            links_global.add(link)
+            links_current.add(link)
+
+        elif url_first in link and  link in links_global and link not in links_current:
+            links_no_follow.add(link)
 
     if url not in result_dict:
         result_dict[url] =  {
             'title': title,
-            'links': links_current
+            'links': links_current.union(links_no_follow)
         }
 
     for x in links_current:
