@@ -1,9 +1,8 @@
 import datetime
 from json import dumps
 
-
 def make_report(url, results, dir, mode, dic=''):
-    report_decision = input('Do you want to make report? (y/n)\n')
+    report_decision = input('Would you like to make report? (y/n)\n')
 
     if report_decision == 'y':
         exec(url, results, dir, mode, dic)
@@ -15,6 +14,10 @@ def make_report(url, results, dir, mode, dic=''):
 
 def exec(url, results, dir, mode, dic=''):
     now = datetime.datetime.now()
+
+    for val in results.values():            # Change type of links to string (so it could be dumped with json)
+        val['links'] = str(val['links'])
+
 
     with open(f'./reports/{dir}/report_{now.strftime("%Y-%m-%d")}_{now.strftime("%H;%M")}', 'w+') as file:
 
