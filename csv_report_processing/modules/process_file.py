@@ -12,12 +12,14 @@ from .process_engine import *
 def process_file(file, new_name):
     """This function will init processing given .csv file"""
 
-    with open(file) as csv_file, open(f'{os.path.split(os.path.abspath(__file__))[0]}/../processed_files/{new_name}.csv', 'w+') as new_file:
+    if file[-3:] != 'csv':                                     # Check if passed file is .csv
+        print(colored('You have to pass .csv file!', color='red'))
 
-        if not file[-3:] == 'csv':                      # Check if passed file is .csv
-            print(colored('You have to pass .csv file!', color='red'))
+        return 0
 
-            return 0
+    which_encoding = check_if_utf_16(file)
+
+    with open(file, encoding=which_encoding) as csv_file, open(f'{os.path.split(os.path.abspath(__file__))[0]}/../processed_files/{new_name}.csv', 'w+', encoding='utf-8') as new_file:
 
         file_read = reader(csv_file)
 
@@ -38,4 +40,18 @@ def process_file(file, new_name):
             new_file_write.writerow([date, code, impressions, row[3]])
 
 
+
+def check_if_utf_16(file):
+    try:
+        print(file)
+        with open(file, 'r', encoding='utf-8') as input_file:
+            read = reader(input_file)
+            next(read)
+        return 'utf-8'
+
+    except UnicodeDecodeError:
+        with open(file, 'r', encoding='utf-16') as input_file:
+            read = reader(input_file)
+            next(read)
+        return 'utf-16'
 
