@@ -27,7 +27,7 @@ def get_country_shortcut(city_name):
                 country_code = c.country_code
 
         if not country_code:                           # If country not found, exit 'try' block
-            print(colored('Could not find that place!', color='yellow'))
+            print(colored(f'Could not find that place! ({city_name})', color='yellow'))
             raise ValueError()
 
         for b in list(pycountry.countries):         # change extracted two-letter country code to three-letter one

@@ -33,6 +33,8 @@ def process_file(file, new_name):
         new_file_write.writerow(['Date', 'Country_code', 'Number of impressions', 'CTR'])
 
         for row in file_read:
+            check_valid_data(row)
+
             date = change_date_format(row[0])           # Change data as specified in task
             code = get_country_shortcut(row[1])
             impressions = int(row[2])
@@ -42,16 +44,36 @@ def process_file(file, new_name):
 
 
 def check_if_utf_16(file):
+    """This function will distinguish file encoding (utf-8 or utf-16)"""
     try:
-        print(file)
         with open(file, 'r', encoding='utf-8') as input_file:
             read = reader(input_file)
-            next(read)
+            for x in read:                               # For loop goes only to cause error if given file is utf-16
+                a = x
         return 'utf-8'
 
     except UnicodeDecodeError:
-        with open(file, 'r', encoding='utf-16') as input_file:
-            read = reader(input_file)
-            next(read)
         return 'utf-16'
+
+
+def check_valid_data(list_of_data):
+    """This function will check if data in .csv file is valid"""
+
+    try:
+        isinstance(float(list_of_data[1]), float)
+    except ValueError:
+        sys.exit(colored('City name MUST be string value!!!', color='red'))
+
+    try:
+        isinstance(int(list_of_data[2]), int)
+    except ValueError:
+        sys.exit(colored('Number of impressions MUST be a number!!!', color='red'))
+
+    try:
+        isinstance(float(list_of_data[3].strip('%')), float)
+    except ValueError:
+        sys.exit(colored('CTR MUST be a number!!!', color='red'))
+
+
+
 
