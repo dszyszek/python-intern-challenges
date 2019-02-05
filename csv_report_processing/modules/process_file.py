@@ -61,8 +61,9 @@ def check_valid_data(list_of_data):
 
     try:
         isinstance(float(list_of_data[1]), float)
-    except ValueError:
         sys.exit(colored('City name MUST be string value!!!', color='red'))
+    except ValueError:
+        pass
 
     try:
         isinstance(int(list_of_data[2]), int)
