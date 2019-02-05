@@ -1,33 +1,25 @@
-================= Report 2019-02-02 15:19 =================
+================= Report 2019-02-05 14:29 =================
 Domain: http://0.0.0.0:8000
 Map of the page:
 {
     "http://0.0.0.0:8000": {
         "title": "Index",
-        "links": [
-            "http://0.0.0.0:8000/example.html",
-            "http://0.0.0.0:8000/site.html"
-        ]
+        "links": "{'http://0.0.0.0:8000/example.html', 'http://0.0.0.0:8000/site.html'}"
     },
     "http://0.0.0.0:8000/example.html": {
         "title": "No links here",
-        "links": []
+        "links": "set()"
     },
     "http://0.0.0.0:8000/site.html": {
         "title": "The Site",
-        "links": [
-            "http://0.0.0.0:8000/site/subsite.html"
-        ]
+        "links": "{'http://0.0.0.0:8000/site/subsite.html'}"
     },
     "http://0.0.0.0:8000/site/subsite.html": {
         "title": "Looping",
-        "links": [
-            "http://0.0.0.0:8000/site/other_site.html",
-            "http://0.0.0.0:8000"
-        ]
+        "links": "{'http://0.0.0.0:8000/site/other_site.html', 'http://0.0.0.0:8000'}"
     },
     "http://0.0.0.0:8000/site/other_site.html": {
         "title": "Looped",
-        "links": []
+        "links": "{'http://0.0.0.0:8000/site/subsite.html'}"
     }
 }
